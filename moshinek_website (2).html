@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وكالة موشنك - خدمات الموشن جرافيك الاحترافية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F4F4F4;
+            color: #222222;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            background: linear-gradient(135deg, #1F3C88 0%, #2A4A9A 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" style="stop-color:rgba(255,201,71,0.1)"/><stop offset="100%" style="stop-color:rgba(255,201,71,0)"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            filter: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #1F3C88, #FFC947, #00B894, #1F3C88);
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { 
+                transform: translateY(0px);
+            }
+            50% { 
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Logo fallback styling */
+        .logo-fallback {
+            display: none;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1F3C88, #2A4A9A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero-video {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            background: #333;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #FFC947, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 201, 71, 0.5); }
+            to { text-shadow: 0 0 30px rgba(255, 201, 71, 0.8); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #00B894, #00D4AA);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 184, 148, 0.6);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1F3C88;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #FFC947, #FFD700);
+            border-radius: 2px;
+        }
+
+        /* Description Section */
+        .description {
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .description h3 {
+            color: #1F3C88;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .description-list {
+            list-style: none;
+            font-size: 1.2rem;
+            line-height: 2;
+        }
+
+        .description-list li {
+            margin: 15px 0;
+            padding: 15px;
+            background: #F4F4F4;
+            border-radius: 10px;
+            border-right: 4px solid #FFC947;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 201, 71, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #FFC947;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            color: #1F3C88;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            background: linear-gradient(45deg, #1F3C88, #2A4A9A);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-video {
+            width: 100%;
+            height: 200px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #1F3C88 0%, #2A4A9A 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="100" cy="100" r="50" fill="rgba(255,201,71,0.1)"/><circle cx="900" cy="200" r="70" fill="rgba(255,201,71,0.1)"/><circle cx="200" cy="800" r="60" fill="rgba(255,201,71,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #FFC947;
+            display: block;
+        }
+
+        .stat-text {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            background: linear-gradient(45deg, #FFC947, #FFD700);
+            text-align: center;
+            color: #1F3C88;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: move 20s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .final-cta p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1F3C88;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .description {
+                padding: 40px 30px;
+            }
+            
+            .logo {
+                top: 15px;
+                right: 15px;
+                padding: 10px;
+            }
+            
+            .logo img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .logo-fallback {
+                width: 60px;
+                height: 60px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <div class="logo">
+        <img src="C:\Users\Moha1\OneDrive\سطح المكتب\web\ChatGPT Image 13 يونيو 2025، 04_19_00 م.png" alt="شعار موشنك" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-fallback">
+            موشن<br>ك
+        </div>
+    </div>
+    
+    <header class="header">
+        
+        <div class="hero-content">
+            <video class="hero-video" controls poster="" onerror="this.style.display='none'">
+                <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250612-WA0002.mp4" type="video/mp4">
+                فيديو الموشن جرافيك
+            </video>
+            
+            <h1 class="hero-title">فيديو موشن جرافيك يحوّل فكرتك إلى عملاء</h1>
+            
+            <div class="hero-subtitle">
+                <p>هل تجد صعوبة في شرح مشروعك للعملاء؟</p>
+                <p>نحن نصمم لك فيديو يوضح فكرتك ببساطة وجاذبية.</p>
+                <p>سواء كان مشروعك متجر إلكتروني، تطبيق، أو شركة خدمات — لدينا الحل.</p>
+            </div>
+            
+            <a href="https://api.whatsapp.com/send/?phone=%2B201008523920&text&type=phone_number&app_absent=0&wame_ctl=1" class="cta-button">
+                احجز خدمتك الآن 🚀
+            </a>
+        </div>
+    </header>
+
+    <!-- Description Section -->
+    <section class="section">
+        <div class="container">
+            <div class="description fade-in">
+                <h3>🎯 لأن 70% من العملاء يفضلون الفيديو على قراءة النصوص!</h3>
+                <ul class="description-list">
+                    <li>🎤 لأن فكرتك تستحق أن تُقال بشكل جذاب</li>
+                    <li>🎯 لأن أول 10 ثواني من الفيديو هي فرصتك الذهبية لجذب عميلك</li>
+                    <li>🚀 استثمر 60 ثانية تحصل على مبيعات لسنوات!</li>
+                    <li>💡 اشرح مشروعك وأنت مرتاح — نحن ننتج الفيديو لك بالكامل</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">لماذا تختارنا؟</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">سرعة التنفيذ</h3>
+                    <p>من 3 إلى 5 أيام فقط</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💎</div>
+                    <h3 class="feature-title">جودة عالية</h3>
+                    <p>بأسعار مناسبة</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎙️</div>
+                    <h3 class="feature-title">سكريبت وتعليق</h3>
+                    <p>صوتي احترافي</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🔄</div>
+                    <h3 class="feature-title">تعديلات مجانية</h3>
+                    <p>حتى رضاك التام</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🇸🇦</div>
+                    <h3 class="feature-title">خبرة بالسوق</h3>
+                    <p>الخليجي والسعودي تحديداً</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section" style="background: white;">
+        <div class="container">
+            <h2 class="section-title fade-in">كيف تعمل الخدمة؟</h2>
+            <div class="process-steps">
+                <div class="process-step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>تواصل معنا</h3>
+                    <p>عبر النموذج أو الواتساب</p>
+                    <a href="https://api.whatsapp.com/send/?phone=%2B201008523920&text&type=phone_number&app_absent=0&wame_ctl=1" style="color: #00B894; text-decoration: none; font-weight: bold;">رابط التواصل</a>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>كتابة النص</h3>
+                    <p>نكتب النص ونتفق على التفاصيل</p>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>تصميم الفيديو</h3>
+                    <p>نصمم الفيديو ونرسله لك خلال أيام</p>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>التسليم</h3>
+                    <p>تستلم عمل احترافي جاهز للنشر</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">بعض من عينات أعمالنا</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 1</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250612-WA0003.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 2</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250612-WA0004.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 3</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250612-WA0005.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 4</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250613-WA0000.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 5</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250613-WA0001.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 6</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250613-WA0003.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 7</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250613-WA0004.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="portfolio-item fade-in">
+                    <video class="portfolio-video" controls onerror="this.parentElement.innerHTML='<div class=portfolio-video>عينة عمل 8</div>'">
+                        <source src="C:\Users\Moha1\OneDrive\سطح المكتب\web\VID-20250613-WA0012.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <div style="background: linear-gradient(135deg, #1F3C88, #2A4A9A); padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(31, 60, 136, 0.3); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 1000 1000&quot;><circle cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;50&quot; fill=&quot;rgba(255,201,71,0.1)&quot;/><circle cx=&quot;900&quot; cy=&quot;200&quot; r=&quot;70&quot; fill=&quot;rgba(255,201,71,0.1)&quot;/></svg>'); opacity: 0.3;"></div>
+                    <div style="position: relative; z-index: 10;">
+                        <h3 style="color: white; font-size: 1.8rem; margin-bottom: 20px; font-weight: 700;">📘 شاهد المزيد من أعمالنا</h3>
+                        <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 30px;">مجموعة شاملة من مشاريعنا السابقة ونماذج متنوعة من الموشن جرافيك</p>
+                        <a href="https://www.facebook.com/share/v/16S4wNJ3zt/" target="_blank" style="display: inline-block; background: linear-gradient(45deg, #FFC947, #FFD700); color: #1F3C88; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 8px 25px rgba(255, 201, 71, 0.4);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 12px 35px rgba(255, 201, 71, 0.6)'" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 8px 25px rgba(255, 201, 71, 0.4)'">
+                            🎬 صفحة الأعمال على فيسبوك
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <div class="testimonial-content">
+                <h2 class="section-title fade-in" style="color: white;">ضمانات النجاح</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card fade-in">
+                        <span class="stat-number">✅</span>
+                        <p class="stat-text">ضمان الرضا التام<br>حتى تكون 100% راض عن النتيجة</p>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <span class="stat-number">🔥</span>
+                        <p class="stat-text">عدد محدود شهرياً<br>نركز على الجودة لذلك نستلم عدد محدود من الطلبات</p>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <span class="stat-number">🎁</span>
+                        <p class="stat-text">عرض خاص لأول 10 عملاء<br>احصل على تخفيض أو ميزة إضافية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="section final-cta">
+        <div class="container">
+            <div class="final-cta-content">
+                <h2 class="fade-in">🚀 ابدأ مشروعك الآن</h2>
+                <p class="fade-in">أرسل التفاصيل وسنبدأ العمل فوراً</p>
+                <a href="https://api.whatsapp.com/send/?phone=%2B201008523920&text&type=phone_number&app_absent=0&wame_ctl=1" class="cta-button fade-in" style="background: #1F3C88; margin-bottom: 20px;">
+                    احجز خدمتك الآن عبر الواتساب
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 وكالة موشنك - جميع الحقوق محفوظة</p>
+            <p>متخصصون في خدمات الموشن جرافيك الاحترافية</p>
+        </div>
+    </footer>
+
+    <!-- Hidden Images for Loading -->
+    <div style="display: none;">
+        <img src="C:\Users\Moha1\OneDrive\سطح المكتب\web\ChatGPT Image 13 يونيو 2025، 04_51_29 م.png" alt="">
+        <img src="C:\Users\Moha1\OneDrive\سطح المكتب\web\ChatGPT Image 13 يونيو 2025، 05_11_33 م.png" alt="">
+        <img src="C:\Users\Moha1\OneDrive\سطح المكتب\web\ChatGPT Image 13 يونيو 2025، 05_12_11 م.png" alt="">
+        <img src="C:\Users\Moha1\OneDrive\سطح المكتب\web\ChatGPT Image 13 يونيو 2025، 05_18_31 م.png" alt="">
+    </div>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add floating animation to CTA buttons
+        setInterval(() => {
+            document.querySelectorAll('.cta-button').forEach(button => {
+                button.style.transform = button.style.transform === 'translateY(-2px)' ? 'translateY(2px)' : 'translateY(-2px)';
+            });
+        }, 2000);
+
+        // Add parallax effect to header
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const header = document.querySelector('.header');
+            if (header) {
+                header.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add click tracking for analytics (optional)
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', () => {
+                console.log('CTA button clicked');
+                // Add your analytics tracking code here
+            });
+        });
+
+        // Loading animation for videos
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('loadstart', () => {
+                console.log('Video loading started');
+            });
+            
+            video.addEventListener('error', (e) => {
+                console.log('Video failed to load:', e);
+                // Fallback content is handled by onerror attribute
+            });
+        });
+
+        // Add hover effects for portfolio items
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add typing effect to hero title (optional enhancement)
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero-title');
+            if (heroTitle) {
+                const originalText = heroTitle.textContent;
+                // Uncomment the line below to enable typing effect
+                // typeWriter(heroTitle, originalText, 80);
+            }
+        });
+
+        // Add mobile menu toggle functionality (if needed)
+        const mobileMenuToggle = () => {
+            // Mobile menu functionality can be added here if needed
+        };
+
+        // Performance optimization: Lazy load videos
+        const lazyLoadVideos = () => {
+            const videos = document.querySelectorAll('video[data-src]');
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        video.src = video.dataset.src;
+                        video.load();
+                        videoObserver.unobserve(video);
+                    }
+                });
+            });
+
+            videos.forEach(video => {
+                videoObserver.observe(video);
+            });
+        };
+
+        // Initialize lazy loading
+        lazyLoadVideos();
+
+        // Add smooth reveal animation for sections
+        const revealSections = () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.animationDelay = `${index * 0.2}s`;
+            });
+        };
+
+        // Initialize reveal animations
+        revealSections();
+    </script>
+</body>
+</html>
